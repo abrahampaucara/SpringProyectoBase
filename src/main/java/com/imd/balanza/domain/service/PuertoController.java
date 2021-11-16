@@ -1,16 +1,8 @@
 package com.imd.balanza.domain.service;
 
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.io.FileWriter;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
-
-import com.imd.balanza.persistence.entity.Registro;
-import com.imd.balanza.web.controller.HolaMundoController;
 import gnu.io.CommPort;
 import gnu.io.SerialPort;
 import gnu.io.CommPortIdentifier;
@@ -49,18 +41,6 @@ public class PuertoController {
         }
     }
 
-    /*
-    //public static void main(final String[] args) throws IOException {
-    public static void lector() throws IOException {
-        try {
-            new PuertoController().connect("COM1");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-     */
-
     public static class SerialReader implements Runnable
     {
         InputStream in;
@@ -76,8 +56,7 @@ public class PuertoController {
                 while ((len = this.in.read(buffer)) > -1) {
                     final String datos = new String(buffer, 0, len);
                     System.out.println(datos);
-                    new CloneRegistro().setNombre(datos);
-                    System.out.println("datos.... desde puerto controller...");
+                    new CloneRegistro().setPeso(datos);
                     Thread.sleep(100L);
                 }
             }
@@ -85,16 +64,5 @@ public class PuertoController {
                 e.printStackTrace();
             }
         }
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-    private String mensaje="hola ab";
-    public String enviandoDatos(){
-        return this.getMensaje();
     }
 }

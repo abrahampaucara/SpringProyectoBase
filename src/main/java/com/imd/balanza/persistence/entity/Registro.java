@@ -13,7 +13,7 @@ public class Registro {
 
     private String nombre;
 
-    private Double peso;
+    private String peso;
 
     public Integer getId() {
         return id;
@@ -31,11 +31,11 @@ public class Registro {
         this.nombre = nombre;
     }
 
-    public Double getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
 }

@@ -12,10 +12,7 @@ public interface RegistroCrudRepository extends CrudRepository<Registro, Integer
     //@Query(value = "select * from registros where id = ?", nativeQuery = true)
     List<Registro> findByIdOrderByNombreAsc(int id);
 
-    @Query(value = "SELECT id, nombre, peso FROM registros ORDER BY id DESC LIMIT 1;", nativeQuery=true)
+    @Query(value = "SELECT id, nombre, peso FROM registros ORDER BY id DESC LIMIT 1;", nativeQuery = true)
     List<Registro> ultimoRegistro();
-
-    @Query(value = "INSERT INTO registros (nombre, peso) values ('Angel', ?);", nativeQuery = true)
-    List<Registro> guardarSerial(Double peso);
 
 }

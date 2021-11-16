@@ -4,7 +4,6 @@ import com.imd.balanza.persistence.crud.RegistroCrudRepository;
 import com.imd.balanza.persistence.entity.Registro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +33,7 @@ public class RegistroRepository {
         return registroCrudRepository.ultimoRegistro();
     }
 
+
     public boolean delete(int id) {
         if(getRegistro(id).isPresent()) {
             registroCrudRepository.deleteById(id);
@@ -42,4 +42,5 @@ public class RegistroRepository {
             return false;
         }
     }
+
 }

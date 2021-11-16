@@ -45,4 +45,9 @@ public class RegistroController {
     public List<Registro> getRegister() {
         return registroService.getLastRegister();
     }
+
+    @GetMapping("/txt")
+    public String txt() {
+        return "Saludos AB";
+    }
 }

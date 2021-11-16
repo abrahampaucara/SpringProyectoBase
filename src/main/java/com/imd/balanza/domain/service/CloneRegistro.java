@@ -1,12 +1,16 @@
 package com.imd.balanza.domain.service;
 
-import com.imd.balanza.web.controller.RegistroController;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class CloneRegistro {
 
     private Integer id;
     private String nombre;
-    private Double peso;
+    private String peso;
+
 
     public Integer getId() {
         return id;
@@ -21,16 +25,31 @@ public class CloneRegistro {
     }
 
     public void setNombre(String nombre) {
-        System.out.println("llego a CloneRegister: "+nombre);
-        //new RegistroController().getRegister();
         this.nombre = nombre;
     }
 
-    public Double getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(String peso) {
+        System.out.println("Dato puerto Serial: "+peso);
+        try {
+            Thread.sleep(100L);
+            String myDriver = "com.mysql.jdbc.Driver";
+            String myUrl = "jdbc:postgresql://localhost/bascula";
+            Connection conn = null;
+            conn = DriverManager.getConnection(myUrl, "postgres", "postgres");
+            String query = " insert into registros (nombre, peso)" + " values (?, ?)";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, "Sin nombre");
+            preparedStmt.setString (2, peso);
+            preparedStmt.execute();
+            conn.close();
+        }
+        catch (InterruptedException | SQLException ex) {
+            ex.printStackTrace();
+        }
         this.peso = peso;
     }
 }
